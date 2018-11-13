@@ -8,7 +8,6 @@ main() -> [].
 event(init) ->
     Room = n2o:session(room),
     n2o:reg({topic,Room}),
-    nitro:update(heading,#b{id=heading,body="Review: " ++ Room}),
     nitro:update(logout,#button{id=logout, body="Logout " ++ n2o:user(), postback=logout}),
     nitro:update(upload,#upload{id=upload}),
     nitro:update(send, #button{ id=send, body= <<"Chat">>, postback=chat, source=[message] }),

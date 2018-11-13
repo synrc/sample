@@ -1,0 +1,7 @@
+{application, review,
+    [{description, "SAMPLE WebSocket Application"},
+     {vsn, "5.11"},
+     {registered, []},
+     {applications, [kernel, stdlib, kvs, cowboy, n2o]},
+     {mod, { review, []}},
+     {env, []}]}.

@@ -1,5 +1,5 @@
-SAMPLE: WebSocket Application
-=============================
+REVIEW WS: WebSocket Application
+================================
 
 Just leave a comment to a published file
 or to a realm anonymously or on behalf.

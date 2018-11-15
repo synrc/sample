@@ -5,7 +5,14 @@
 main(A)    -> mad:main(A).
 stop(_)    -> ok.
 start()    -> start(normal,[]).
-init([])   -> kvs:join(), {ok, {{one_for_one, 5, 10}, []}}.
-start(_,_) -> {ok, _} = cowboy:start_clear(http, [{port, 8001}],
-              #{ env => #{dispatch => n2o_cowboy2:points()} }),
-              supervisor:start_link({local,review},review,[]).
+start(_,_) -> case ver() of cow1 -> []; _ ->
+                   cowboy:start_clear(http, [{port, port()}],
+                      #{ env => #{dispatch => n2o_cowboy2:points()} })
+              end, supervisor:start_link({local,review},review,[]).
+init([])   -> kvs:join(), {ok, {{one_for_one, 5, 10}, ?MODULE:(ver())() }}.
+ver()      -> application:get_env(n2o,cowboy_spec,cow1).
+cow2()     -> [].
+cow1()     -> [spec()].
+port()     -> application:get_env(n2o,port,8001).
+env()      -> [ { env, [ { dispatch, n2o_cowboy:points() } ] } ].
+spec()     -> ranch:child_spec(http,100,ranch_tcp,[{port,port()}],cowboy_protocol,env()).

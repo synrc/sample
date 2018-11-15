@@ -10,7 +10,7 @@ start(_,_) -> case ver() of cow1 -> []; _ ->
                       #{ env => #{dispatch => n2o_cowboy2:points()} })
               end, supervisor:start_link({local,review},review,[]).
 init([])   -> kvs:join(), {ok, {{one_for_one, 5, 10}, ?MODULE:(ver())() }}.
-ver()      -> application:get_env(n2o,cowboy_spec,cow1).
+ver()      -> application:get_env(n2o,cowboy_spec,cow2).
 cow2()     -> [].
 cow1()     -> [spec()].
 port()     -> application:get_env(n2o,port,8001).

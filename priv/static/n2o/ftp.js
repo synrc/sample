@@ -10,7 +10,7 @@ var ftp = {
             status: 'init',
             autostart: ftp.autostart || false,
             name: ftp.filename || file.name,
-            sid: ftp.sid || token(),
+            sid: ftp.sid || token(), // co(session),
             meta: ftp.meta || bin(client()),
             offset: ftp.offset || 0,
             block: 1,
@@ -44,13 +44,14 @@ var ftp = {
             number(item.block || data.byteLength),
             bin(data),
             bin(item.status || 'send')
-        )), 0);
+        )));
     },
     send_slice: function (item) {
         this.reader = new FileReader();
         this.reader.onloadend = function (e) {
             var res = e.target, data = e.target.result;
-            if (res.readyState === FileReader.DONE && data.byteLength > 0) {
+            if (res.readyState === FileReader.DONE && data.byteLength >= 0) {
+                console.log(item);
                 ftp.send(item, data);
             }
         };

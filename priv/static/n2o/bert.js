@@ -96,7 +96,7 @@ function run(b) {
 };
 
 function arr(b) {
-  var dv, sz = sx.getUint16(ix); ix += b; return sx.buffer.slice(ix, ix += sz);
+  var dv, sz = sx.getUint16(ix); ix += b; return new Uint8Array(sx.buffer.slice(ix, ix += sz));
 };
 
 function din() {

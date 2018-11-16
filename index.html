@@ -43,10 +43,16 @@
             </div>
         <figure>
         <code>
- $ mad get sample
- $ cd deps/sample
- $ mad dep com pla rep
+ $ mad app web joe
+ $  cd joe
+ $ mad dep com pla
+ $ mad rep
+ >
+
  $ open http://127.0.0.1:8001/app/index.htm
+
+ $ mad bun beam joe
+ $ mad bun script joe
         </code></figure>
 
         </section>
@@ -60,10 +66,10 @@
         <figure>
             <figcaption>Picture 1. OTP tools</figcaption>
             <code>
- $ mad app web joe
- $ cd joe
+ $ git clone git://github.com/synrc/sample
+ $ cd sample
  $ rebar3 shell
- > joe:rebar3().
+ > review:rebar3().
  ok
 
  $ open http://127.0.0.1:8001/app/index.htm

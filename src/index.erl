@@ -8,7 +8,7 @@ main() -> [].
 event(init) ->
     Room = n2o:session(room),
     n2o:reg({topic,Room}),
-    nitro:update(history, #panel{id=history}),
+    nitro:clear(history),
     nitro:update(logout, #button{id=logout, body="Logout " ++ n2o:user(), postback=logout}),
     nitro:update(heading, #h2{id=heading, body=Room}),
     nitro:update(upload, #upload{id=upload}),

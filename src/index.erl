@@ -14,7 +14,7 @@ event(init) ->
     nitro:update(upload, #upload{id=upload}),
     nitro:update(send, #button{id=send, body= <<"Chat">>, postback=chat, source=[message] }),
     [ event({client,{E#entry.from,E#entry.media}})
-      || E <- kvs:entries(kvs:get(feed,{room,Room}),entry,10) ];
+      || E <- lists:reverse(kvs:entries(kvs:get(feed,{room,Room}),entry,10)) ];
 event(logout) ->
     n2o:user([]),
     nitro:redirect("/app/login.htm");

@@ -7,11 +7,12 @@ body() -> [].
 main() -> [].
 event(init) ->
     Room = n2o:session(room),
+    io:format("Room: ~p~n",[Room]),
     n2o:reg({topic,Room}),
     nitro:clear(history),
     nitro:update(logout, #button{id=logout, body="Logout " ++ n2o:user(), postback=logout}),
     nitro:update(heading, #h2{id=heading, body=Room}),
-    nitro:update(upload, #upload{id=upload}),
+    nitro:update(upload, #upload{}),
     nitro:update(send, #button{id=send, body= <<"Chat">>, postback=chat, source=[message] }),
     [ event({client,{E#entry.from,E#entry.media}})
       || E <- lists:reverse(kvs:entries(kvs:get(feed,{room,Room}),entry,10)) ];

@@ -22,7 +22,7 @@ event(logout) ->
 event(chat) ->
     User    = n2o:user(),
     Room    = n2o:session(room),
-    Message = n2o:q(message),
+    Message = nitro:q(message),
     n2o:info(?MODULE,"Chat pressed: ~p~n",[{Room,Message,User}]),
     kvs:add(#entry{id=kvs:next_id("entry",1),from=n2o:user(),
                    feed_id={room,Room},media=Message}),

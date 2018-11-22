@@ -9,6 +9,8 @@ event(init) ->
     Room = n2o:session(room),
     io:format("Room: ~p~n",[Room]),
     n2o:reg({topic,Room}),
+    Sid = (get(context))#cx.session,
+    n2o:reg(Sid),
     nitro:clear(history),
     nitro:update(logout, #button{id=logout, body="Logout " ++ n2o:user(), postback=logout}),
     nitro:update(heading, #h2{id=heading, body=Room}),
@@ -33,10 +35,9 @@ event(#client{data={User,Message}}) ->
     DTL = #dtl{file="message",app=review,bindings=[{user,User},{color,"gray"},{message,HTML}]},
     nitro:insert_top(history, nitro:jse(nitro:render(DTL)));
 event(#ftp{sid=Sid,filename=Filename,status={event,stop}}=Data) ->
-    n2o:info(?MODULE,"FTP Delivered ~p~n",[Data]),
     Name = hd(lists:reverse(string:tokens(nitro:to_list(Filename),"/"))),
-    erlang:put(message,nitro:render(#link{href=iolist_to_binary(["/app/",Sid,"/",nitro:url_encode(Name)]),body=Name})),
-    n2o:info(?MODULE,"Message ~p~n",[wf:q(message)]),
+    erlang:put(message,nitro:render(#link{href=iolist_to_binary(["/app/",Sid,"/",nitro_conv:url_encode(Name)]),body=Name})),
+    n2o:info(?MODULE,"FTP Delivered ~p~n",[Data]),
     event(chat);
 event(Event) ->
     n2o:info(?MODULE,"Event: ~p", [Event]),

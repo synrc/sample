@@ -11,6 +11,7 @@ Intro
 
 Sample application consist of two pages `login` and `index`.
 It creates WebSocket connection to `n2o` server.
+The permanent example is accesible at <a href="http://sample.n2o.space/index.htm">ns.synrc.com:8001</a>.
 
 Index
 -----

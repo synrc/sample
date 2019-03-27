@@ -36,7 +36,7 @@ event(#client{data={User,Message}}) ->
     nitro:insert_top(history, nitro:jse(nitro:render(DTL)));
 event(#ftp{sid=Sid,filename=Filename,status={event,stop}}=Data) ->
     Name = hd(lists:reverse(string:tokens(nitro:to_list(Filename),"/"))),
-    erlang:put(message,nitro:render(#link{href=iolist_to_binary(["/app/",Sid,"/",nitro_conv:url_encode(Name)]),body=Name})),
+    erlang:put(message,nitro:render(#link{href=iolist_to_binary(["/app/",Sid,"/",Name]),body=Name})),
     n2o:info(?MODULE,"FTP Delivered ~p~n",[Data]),
     event(chat);
 event(Event) ->

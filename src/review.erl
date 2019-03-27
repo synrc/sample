@@ -6,7 +6,7 @@ main(A)    -> mad:main(A).
 stop(_)    -> ok.
 start()    -> start(normal,[]).
 start(_,_) -> case ver() of cow1 -> []; _ ->
-                   cowboy:start_clear(http, [{port, port()}],
+                   cowboy:start_tls(http, [{port, port()}, {certfile, "/etc/letsencrypt/live/ns.synrc.com/fullchain.pem"}, {keyfile, "/etc/letsencrypt/live/ns.synrc.com/privkey.pem"}],
                       #{ env => #{dispatch => n2o_cowboy2:points()} })
               end, supervisor:start_link({local,review},review,[]).
 init([])   -> kvs:join(), {ok, {{one_for_one, 5, 10}, ?MODULE:(ver())() }}.

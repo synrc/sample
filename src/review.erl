@@ -8,7 +8,7 @@ start()    -> start(normal,[]).
 start(_,_) -> case ver() of cow1 -> []; _ ->
                    cowboy:start_clear(http, [{port, port()}],
                       #{ env => #{dispatch => n2o_cowboy2:points()} }),
-                   cowboy:start_tls(http, [{port, port()+1}, {certfile, code:priv_dir(review)++"/ssl/fullchain.pem"}, {keyfile, code:priv_dir(review)++"/ssl/privkey.pem"}],
+                   cowboy:start_tls(http, [{port, port()+1}, {certfile, code:priv_dir(sample)++"/ssl/fullchain.pem"}, {keyfile, code:priv_dir(sample)++"/ssl/privkey.pem"}],
                       #{ env => #{dispatch => n2o_cowboy2:points()} })
               end, supervisor:start_link({local,review},review,[]).
 init([])   -> kvs:join(), {ok, {{one_for_one, 5, 10}, ?MODULE:(ver())() }}.

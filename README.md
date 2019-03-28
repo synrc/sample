@@ -11,7 +11,7 @@ Intro
 
 Sample application consist of two pages `login` and `index`.
 It creates WebSocket connection to `n2o` server.
-The permanent example is accesible at <a href="http://sample.n2o.space/index.htm">ns.synrc.com:8001/app/index.htm</a>.
+The permanent example is accesible at <a href="https://sample.n2o.space/index.htm">https://sample.n2o.space/app/index.htm</a>.
 
 Index
 -----
@@ -63,12 +63,10 @@ event(#client{data={Room,list}}) ->
 FTP event.
 
 ```
-event(#ftp{sid=_Sid,filename=Filename,status={event,stop}}=Data) ->
+event(#ftp{sid=Sid,filename=Filename,status={event,stop}}=Data) ->
     Name = hd(lists:reverse(string:tokens(nitro:to_list(Filename),"/"))),
-    IP = application:get_env(review,host,"127.0.0.1"),
-    erlang:put(message,
-    nitro:render(#link{href=iolist_to_binary(["http://",IP,":8000/n2o/",
-                       nitro_conv:url_encode(Name)]),body=Name})),
+    erlang:put(message,nitro:render(#link{href=iolist_to_binary(["/app/",Sid,"/",Name]),body=Name})),
+    n2o:info(?MODULE,"FTP Delivered ~p~n",[Data]),
     event(chat);
 ```
 
@@ -111,7 +109,7 @@ $ mad dep com pla rep
 Then open it in browser:
 
 ```
-$ open http://127.0.0.1:8001/app/index.htm
+$ open https://localhost:8001/app/index.htm
 ```
 
 Credits

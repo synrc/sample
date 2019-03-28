@@ -7,7 +7,7 @@ main(A)    -> mad:main(A).
 stop(_)    -> ok.
 start()    -> start(normal,[]).
 start(_,_) -> case ver() of cow1 -> []; _ ->
-                   p({tls,cowboy:start_tls(http, [{port, port()}, {certfile, code:priv_dir(sample)++"/ssl/fullchain.pem"}, {keyfile, code:priv_dir(sample)++"/ssl/privkey.pem"}],
+                   p({tls,cowboy:start_tls(http, [{port, port()}, {certfile, code:priv_dir(sample)++"/ssl/fullchain.pem"}, {keyfile, code:priv_dir(sample)++"/ssl/privkey.pem"}, {cacertfile, code:priv_dir(sample)++"/ssl/fullchain.pem"}],
                       #{ env => #{dispatch => n2o_cowboy2:points()} })})
               end, supervisor:start_link({local,review},review,[]).
 init([])   -> kvs:join(), {ok, {{one_for_one, 5, 10}, ?MODULE:(ver())() }}.

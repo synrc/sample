@@ -109,6 +109,7 @@ $ mad dep com pla rep
 Then open it in browser:
 
 ```
+$ open priv/ssl/fullchain.pem # setup trust for our localhost certificate
 $ open https://localhost:8001/app/index.htm
 ```
 

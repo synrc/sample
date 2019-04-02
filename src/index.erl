@@ -3,8 +3,6 @@
 -include_lib("kvs/include/entry.hrl").
 -include_lib("nitro/include/nitro.hrl").
 -include_lib("n2o/include/n2o.hrl").
-body() -> [].
-main() -> [].
 event(init) ->
     Room = n2o:session(room),
     io:format("Room: ~p~n",[Room]),

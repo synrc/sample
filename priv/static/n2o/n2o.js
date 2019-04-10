@@ -27,13 +27,12 @@ function N2O_start() {
 
 var $io = {}; $io.on = function onio(r, cb) {
     if (is(r, 3, 'io')) {
-        if (r.v[2].v != undefined && r.v[2].v[1] != undefined &&
-            r.v[2].v.length == 2 && (r.v[2].v[0].v == "Token" || r.v[2].v[0].v == "Auth")) {
-            localStorage.setItem("token",utf8_arr(r.v[2].v[1].v));
-        }
+        if (r.v[2].v != undefined && r.v[2].v[1] != undefined && r.v[2].v.length == 2 &&
+           (r.v[2].v[0].v == "Token" || r.v[2].v[0].v == "Auth"))
+         { localStorage.setItem("token",utf8_arr(r.v[2].v[1].v)); }
         if (typeof cb == 'function') cb(r.v[2]);
-        try { eval(utf8_arr(r.v[1].v)); return { status: "ok" };
-        } catch (e)  { console.error("Eval failed:",e); return { status: '' }; }
+        try { eval(utf8_arr(r.v[1].v)); return { status: "ok" }; }
+        catch (e) { console.error("Eval failed:",e); return { status: '' }; }
     } else return { status: '' };
 }
 
@@ -46,20 +45,17 @@ var $file = {}; $file.on = function onfile(r, cb) {
 // BERT Formatter
 
 var $bert = {}; $bert.protos = [$io, $file]; $bert.on = function onbert(evt, cb) {
-    if (Blob.prototype.isPrototypeOf(evt.data) &&
-       (evt.data.length > 0 || evt.data.size > 0)) {
-        var r = new FileReader();
-        r.addEventListener("loadend", function () {
-            try {
-                erlang = dec(r.result);
-                if (typeof cb == 'function') cb(erlang);
-                for (var i = 0; i < $bert.protos.length; i++) {
-                    p = $bert.protos[i];
-                    if (p.on(erlang, p.do).status == "ok") return;
-                }
-            } catch (e) { console.log(e); }
-        });
-        r.readAsArrayBuffer(evt.data);
+    if (ArrayBuffer.prototype.isPrototypeOf(evt.data) &&
+       (evt.data.byteLength > 0)) {
+        try {
+            var erlang = dec(evt.data);
+            if (typeof cb == 'function') cb(erlang);
+            for (var i = 0; i < $bert.protos.length; i++) {
+                var p = $bert.protos[i];
+                var ret = p.on(erlang, p.do);
+                if (ret != undefined && ret.status == "ok") return ret;
+            }
+        } catch (e) { console.error(e); }
         return { status: "ok" };
     } else return { status: "error", desc: "data" };
 }

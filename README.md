@@ -1,15 +1,14 @@
-REVIEW WS: WebSocket Application
-================================
+SAMPLE: WebSocket Application
+=============================
 
 [![Build Status](https://travis-ci.org/synrc/sample.svg?branch=master)](https://travis-ci.org/synrc/sample)
 
-TL;DR Sample WebSocket Application is a Nitro N2O pages that works on top
-of raw cowboy connection between browser and server.
+NITRO/N2O pages that works on top of raw COWBOY/RANCH connections.
 
 Intro
 -----
 
-Sample application consist of two pages `login` and `index`.
+SAMPLE application consist of two pages `login` and `index`.
 It creates WebSocket connection to `n2o` server.
 The permanent example is accesible at <a href="https://sample.n2o.space/index.htm">https://sample.n2o.space/app/index.htm</a>.
 

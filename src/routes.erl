@@ -9,7 +9,7 @@ init(State, #cx{req=Req}=Cx) ->
                 cow2 -> #{path:=P}=Req, P     % cowboy 2.5
            end,
     Fix  = route_prefix(Path),
-    n2o:info(?MODULE,"Route: ~p~n",[{Fix,Path}]),
+    ?LOG_INFO("Route: ~p~n",[{Fix,Path}]),
     {ok, State, Cx#cx{path=Path,module=Fix}}.
 
 route_prefix(<<"/ws/",P/binary>>) -> route(P);

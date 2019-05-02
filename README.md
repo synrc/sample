@@ -66,7 +66,7 @@ FTP event.
 event(#ftp{sid=Sid,filename=Filename,status={event,stop}}=Data) ->
     Name = hd(lists:reverse(string:tokens(nitro:to_list(Filename),"/"))),
     erlang:put(message,nitro:render(#link{href=iolist_to_binary(["/app/",Sid,"/",Name]),body=Name})),
-    n2o:info(?MODULE,"FTP Delivered ~p~n",[Data]),
+    ?LOG_INFO("FTP Delivered ~p~n",[Data]),
     event(chat);
 ```
 

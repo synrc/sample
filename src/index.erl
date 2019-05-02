@@ -23,7 +23,7 @@ event(chat) ->
     User    = n2o:user(),
     Room    = n2o:session(room),
     Message = nitro:q(message),
-    n2o:info(?MODULE,"Chat pressed: ~p~n",[{Room,Message,User}]),
+    ?LOG_INFO("Chat pressed: ~p~n",[{Room,Message,User}]),
     kvs:add(#entry{id=kvs:next_id("entry",1),from=n2o:user(),
                    feed_id={room,Room},media=Message}),
     n2o:send({topic,Room},#client{data={User,Message}});
@@ -35,8 +35,8 @@ event(#client{data={User,Message}}) ->
 event(#ftp{sid=Sid,filename=Filename,status={event,stop}}=Data) ->
     Name = hd(lists:reverse(string:tokens(nitro:to_list(Filename),"/"))),
     erlang:put(message,nitro:render(#link{href=iolist_to_binary(["/app/",Sid,"/",Name]),body=Name})),
-    n2o:info(?MODULE,"FTP Delivered ~p~n",[Data]),
+    ?LOG_INFO("FTP Delivered ~p~n",[Data]),
     event(chat);
 event(Event) ->
-    n2o:info(?MODULE,"Event: ~p", [Event]),
+    ?LOG_INFO("Event: ~p", [Event]),
     ok.

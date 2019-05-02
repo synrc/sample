@@ -5,9 +5,9 @@
 -include_lib("n2o/include/n2o.hrl").
 event(init) ->
     Room = n2o:session(room),
-    io:format("Room: ~p~n",[Room]),
     n2o:reg({topic,Room}),
     Sid = (get(context))#cx.session,
+    ?LOG_INFO("Room: ~p~n",[{Room,Sid}]),
     n2o:reg(Sid),
     nitro:clear(history),
     nitro:update(logout, #button{id=logout, body="Logout " ++ n2o:user(), postback=logout}),
@@ -33,9 +33,9 @@ event(#client{data={User,Message}}) ->
     DTL = #dtl{file="message",app=review,bindings=[{user,User},{color,"gray"},{message,HTML}]},
     nitro:insert_top(history, nitro:jse(nitro:render(DTL)));
 event(#ftp{sid=Sid,filename=Filename,status={event,stop}}=Data) ->
+    ?LOG_INFO("FTP Delivered ~p~n",[Data]),
     Name = hd(lists:reverse(string:tokens(nitro:to_list(Filename),"/"))),
     erlang:put(message,nitro:render(#link{href=iolist_to_binary(["/app/",Sid,"/",Name]),body=Name})),
-    ?LOG_INFO("FTP Delivered ~p~n",[Data]),
     event(chat);
 event(Event) ->
     ?LOG_INFO("Event: ~p", [Event]),

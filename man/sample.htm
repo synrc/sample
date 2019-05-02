@@ -1,0 +1,91 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="Maxim Sokhatsky" />
+    <title>SAMPLE</title>
+    <link rel="stylesheet" href="https://synrc.space/synrc.css" />
+</head>
+
+<body>
+
+<nav>
+    <a href='https://n2o.space'>SPACE</a>
+    <a href='https://sample.n2o.space'>SAMPLE</a>
+    <a href='#' style="background:#ededed;">SAMPLE</a>
+</nav>
+
+<header>
+    <a href="../index.html"><img src="https://n2o.space/img/Synrc Neo.svg"></a>
+    <h1>SAMPLE</h1>
+</header>
+
+<main>
+    <section>
+
+
+<h3>INTRO</h3>
+
+<p>SAMPLE is a regular Erlang application.</p>
+
+    </section>
+    <section>
+
+<h3>HEADER</h3>
+
+        <figure>
+            <figcaption>Picture 1. HOW TO SETUP BOTH APP AND SUP IN ERLANG</figcaption>
+            <code>
+ -module(sample).
+ -behaviour(supervisor).
+ -behaviour(application).
+ -export([init/1, start/0, start/2, stop/1, main/1]).
+            </code>
+        </figure>
+
+    </section>
+    <section>
+
+<h3>OTP</h3>
+
+<p>Note that suring start you should specify mauth module.
+   Dafault implementation performs client topic autosubscription.</p>
+
+        <figure>
+            <figcaption>Picture 2. Implements Erlang/OTP service API</figcaption>
+            <code>
+ start()    -> start(normal,[]).
+ start(_,_) -> supervisor:start_link({local,SAMPLE},SAMPLE,[]).
+ stop(_)    -> ok.
+            </code>
+        </figure>
+
+    </section>
+    <section>
+
+<h3>COWBOY</h3>
+
+<p>SAMPLE application uses COWBOY as a static HTTP server
+   and as a WebSocket server.</p>
+
+        <figure>
+            <figcaption>Picture 3. COWBOY setup</figcaption>
+            <code>
+ start(_,_) -> cowboy:start_tls(http,n2o_cowboy:env(?MODULE),
+                 #{env=>#{dispatch=>n2o_cowboy2:points() }}),
+               supervisor:start_link({local,sample},sample,[]).
+            </code>
+        </figure>
+
+    </section>
+</main>
+
+<footer>
+    2005&mdash;2019 &copy; Synrc Research Center
+</footer>
+
+</body>
+</html>

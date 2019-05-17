@@ -90,7 +90,7 @@ event(login) ->
     Room = nitro:to_list(nitro:q(pass)),
     n2o:user(User),
     n2o:session(room,Room),
-    nitro:redirect("/index.htm");
+    nitro:redirect("/app/index.htm");
 ```
 
 Setup

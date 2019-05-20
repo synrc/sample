@@ -100,7 +100,7 @@ Setup
 To run review application just clone, build and run:
 
 ```
-$ git clone git clone git://github.com/synrc/sample
+$ git clone git://github.com/synrc/sample
 $ cd sample
 $ mad dep com pla rep
 ```

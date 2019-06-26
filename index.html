@@ -71,9 +71,6 @@
  $ git clone git://github.com/synrc/sample
  $ cd sample
  $ rebar3 shell
- > review:rebar3().
- ok
-
  $ open https://127.0.0.1:8001/app/index.htm
             </code>
         </figure>
@@ -86,9 +83,8 @@
             <code>
  {deps, [{gproc,  ".*", {git, "git://github.com/voxoz/gproc",   []}},
          {cowboy, ".*", {git, "git://github.com/voxoz/cowboy2", []}},
-         {erlydtl,".*", {git, "git://github.com/voxoz/erlydtl", []}},
          {nitro,  ".*", {git, "git://github.com/synrc/nitro",   []}},
-         {n2o,    ".*", {git, "git://github.com/synrc/mqtt",    []}},
+         {n2o,    ".*", {git, "git://github.com/synrc/n2o",     []}},
          {kvs,    ".*", {git, "git://github.com/synrc/kvs",     []}}
         ]}.
             </code>
@@ -100,12 +96,8 @@
  Eshell V10.1.1  (abort with ^G)
  1> application:which_applications().
  [{review,"REVIEW WS Application","5.11"},
-  {sh,"SH Exec","2.10"},
   {nitro,"NITRO HTML5 DSL","3.10"},
-  {mad,"MAD Manage Dependencies","4.11"},
-  {gproc,"GPROC Process Registry","0.10"},
-  {erlydtl,"DTL Django Template Language","git"},
-  {active,"ACT Filesystem Activities","4.10"},
+  {syn,"SYN QoS=0 Pub-Sub","1.6.3"},
   {cowboy,"COWBOY Small, fast, modern HTTP server.","2.5.0"},
   {ranch,"RANCH Socket TCP protocols.","1.6.2"},
   {ssl,"Erlang/OTP SSL application","9.0.3"},
@@ -119,7 +111,6 @@
   {mnesia,"MNESIA  CXC 138 12","4.15.5"},
   {syntax_tools,"Syntax tools","2.1.6"},
   {compiler,"ERTS  CXC 138 10","7.2.6"},
-  {fs,"FS VXZ Listener","4.10"},
   {stdlib,"ERTS  CXC 138 10","3.6"},
   {kernel,"ERTS  CXC 138 10","6.1"}]
             </code>

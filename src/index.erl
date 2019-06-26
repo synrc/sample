@@ -28,7 +28,6 @@ event(#ftp{sid=Sid,filename=Filename,status={event,stop}}=Data) ->
     Name = hd(lists:reverse(string:tokens(nitro:to_list(Filename),"/"))),
     chat(nitro:render(#link{href=iolist_to_binary(["/app/",Sid,"/",Name]),body=Name}));
 event(Event) ->
-    ?LOG_INFO("Event: ~p", [Event]),
     ok.
 
 chat(Message) ->

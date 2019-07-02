@@ -2,6 +2,7 @@
     [{description, "SAMPLE WebSocket application"},
      {vsn, "6.6"},
      {registered, []},
-     {applications, [public_key,asn1,kernel,stdlib,mnesia,kvs,cowlib,ranch,cowboy,syn,n2o]},
+     {applications, [public_key,asn1,kernel,stdlib,mnesia,ranch,syntax_tools,compiler,xmerl,kvs,syn,n2o]},
      {mod, { sample, []}},
-     {env, []}]}.
+     {env, []},
+     {modules,[]}]}.

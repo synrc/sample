@@ -10,7 +10,7 @@ Intro
 
 SAMPLE application consist of two page modules `login` and `index`.
 It creates WebSocket connection to `n2o` server.
-The permanent example is accesible at <a href="https://sample.n2o.space/index.htm">https://sample.n2o.space/index.htm</a>.
+The permanent example is accesible at <a href="https://sample.n2o.dev/index.htm">https://sample.n2o.dev/index.htm</a>.
 
 Index
 -----

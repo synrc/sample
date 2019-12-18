@@ -5,7 +5,7 @@
 main(A)    -> mad:main(A).
 stop(_)    -> ok.
 start()    -> start(normal,[]).
-start(_,_) -> cowboy:start_tls(http,n2o_cowboy:env(?MODULE),
+start(_,_) -> cowboy:start_clear(http,[{port,application:get_env(n2o,port,8002)}],
                  #{env=>#{dispatch=>n2o_cowboy2:points() }}),
               supervisor:start_link({local,sample},sample,[]).
 init([])   -> kvs:join(), syn:init(), {ok, {{one_for_one, 5, 10}, [] }}.

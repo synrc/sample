@@ -36,7 +36,7 @@
  $ mad rep
  >
 
- $ open https://loc:8001/app/index.htm
+ $ open https://localhost:8001/app/index.htm
 
  $ mad bun beam joe
  $ mad bun script joe</code></figure>
@@ -74,11 +74,11 @@
         <figure>
             <figcaption>Picture 2. Minimal Configuration</figcaption>
             <code>
- {deps, [{gproc,  ".*", {git, "git://github.com/voxoz/gproc",   []}},
-         {cowboy, ".*", {git, "git://github.com/voxoz/cowboy2", []}},
+ {deps, [{cowboy, ".*", {git, "git://github.com/voxoz/cowboy2", []}},
          {nitro,  ".*", {git, "git://github.com/synrc/nitro",   []}},
          {n2o,    ".*", {git, "git://github.com/synrc/n2o",     []}},
-         {kvs,    ".*", {git, "git://github.com/synrc/kvs",     []}}
+         {kvs,    ".*", {git, "git://github.com/synrc/kvs",     []}},
+         {syn,    ".*", {git, "git://github.com/ostinelli/syn", []}}
         ]}.
             </code>
         </figure>
@@ -88,24 +88,24 @@
             <code>
  Eshell V10.1.1  (abort with ^G)
  1> application:which_applications().
- [{review,"REVIEW WS Application","5.11"},
+ [{sample,"SAMPLE WebSocket application","0.7.0"},
   {nitro,"NITRO HTML5 DSL","3.10"},
-  {syn,"SYN QoS=0 Pub-Sub","1.6.3"},
-  {cowboy,"COWBOY Small, fast, modern HTTP server.","2.5.0"},
-  {ranch,"RANCH Socket TCP protocols.","1.6.2"},
-  {ssl,"Erlang/OTP SSL application","9.0.3"},
-  {public_key,"Public key infrastructure","1.6.2"},
-  {kvs,"KVS Abstract Term Database","5.10"},
-  {cowlib,"COWLIB Web protocols.","2.6.0"},
-  {crypto,"CRYPTO","4.3.3"},
-  {asn1,"The Erlang ASN1 compiler version 5.0.7","5.0.7"},
-  {n2o,"N2O DAS MQTT TCP WebSocket","5.11"},
-  {inets,"INETS  CXC 138 49","7.0.2"},
-  {mnesia,"MNESIA  CXC 138 12","4.15.5"},
+  {syn,"A global Process Registry and Process Group manager.","2.1.1"},
+  {cowboy,"Small, fast, modern HTTP server.","2.8.0"},
+  {ranch,"Socket acceptor pool for TCP protocols.","1.7.1"},
+  {ssl,"Erlang/OTP SSL application","10.1"},
+  {public_key,"Public key infrastructure","1.9.1"},
+  {kvs,"KVS Abstract Chain Database","7.9.1"},
+  {cowlib,"Support library for manipulating Web protocols.","2.9.1"},
+  {crypto,"CRYPTO","4.8"},
+  {asn1,"The Erlang ASN1 compiler version 5.0.14","5.0.14"},
+  {n2o,"N2O MQTT TCP WebSocket","7.10.0"},
+  {inets,"INETS  CXC 138 49","7.3"},
+  {mnesia,"MNESIA  CXC 138 12","4.18"},
   {syntax_tools,"Syntax tools","2.1.6"},
   {compiler,"ERTS  CXC 138 10","7.2.6"},
-  {stdlib,"ERTS  CXC 138 10","3.6"},
-  {kernel,"ERTS  CXC 138 10","6.1"}]
+  {stdlib,"ERTS  CXC 138 10","3.13.2"},
+  {kernel,"ERTS  CXC 138 10","7.1"}]
             </code>
         </figure>
     </section>

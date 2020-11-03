@@ -76,7 +76,7 @@
             <figcaption>Picture 3. COWBOY setup</figcaption>
             <code>
  start(_,_) -> cowboy:start_tls(http,n2o_cowboy:env(?MODULE),
-                 #{env=>#{dispatch=>n2o_cowboy2:points() }}),
+                 #{env=>#{dispatch=>n2o_cowboy:points() }}),
                supervisor:start_link({local,sample},sample,[]).
             </code>
         </figure>

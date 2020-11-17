@@ -20,9 +20,8 @@ event(logout) ->
 event(chat) ->
     chat(nitro:q(message),nitro);
 event(#client{data={'$msg',_,_,_,User,Message}}) ->
-    HTML = nitro:to_list(Message),
     nitro:wire(#jq{target=message,method=[focus,select]}),
-    nitro:insert_top(history, nitro:render(#message{body=[#author{body=User},nitro:jse(HTML)]}));
+    nitro:insert_top(history, nitro:render(#message{body=[#author{body=User},Message]}));
 event(#ftp{sid=Sid,filename=Filename,status={event,stop}}=Data) ->
     Name = hd(lists:reverse(string:tokens(nitro:to_list(Filename),"/"))),
     chat(nitro:render(#link{href=iolist_to_binary(["/app/",Sid,"/",Name]),body=Name}),index);

@@ -186,6 +186,8 @@ message {
     margin: 15px 0;
     border-radius: 4px;
     box-shadow: 0px 4px 40px rgba(100, 100, 100, .35);
+    white-space: pre-wrap;
+    overflow-x:auto;
 }
 
 author {

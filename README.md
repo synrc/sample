@@ -32,9 +32,8 @@ Setup
 To run review application just clone, build and run:
 
 ```
-$ mad get sample
-$ cd deps/sample
-$ mad dep com pla rep
+$ rebar3 get-deps
+$ rebar3 shell
 ```
 
 Then open it in browser:

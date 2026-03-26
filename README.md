@@ -1,8 +1,6 @@
 SAMPLE: WebSocket Application
 =============================
 
-[![Build Status](https://travis-ci.com/synrc/sample.svg?branch=master)](https://travis-ci.com/synrc/sample)
-
 NITRO/N2O pages that work on top of raw COWBOY/RANCH connections.
 
 Intro
